@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.models.StatusHistory;
-
 import com.revature.services.StatusHistoryService;
 
 
