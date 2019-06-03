@@ -26,6 +26,8 @@ public interface UserService {
 	 public Page<User> findUserByPartialEmail(String email, Pageable pageable);
 	//
 	 public Page<User> findListByEmail(List<String> emailList, Pageable pageable);
+	 
+	 public List<User> findListByEmailNotPageable(List<String> emailList);
   
 	//
 	// public CohortUserListOutputDto saveUsers(UserListInputDto userList, int id)
