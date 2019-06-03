@@ -18,7 +18,6 @@ public class Address {
 	@Column(name = "address_id", unique = true)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int addressId;
-
 	private String alias;
 	private String street;
 	private String zip;
