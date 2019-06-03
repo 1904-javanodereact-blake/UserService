@@ -27,6 +27,7 @@ public interface UserService {
 	//
 	 public Page<User> findListByEmail(List<String> emailList, Pageable pageable);
   
+	 public List<User> findListByEmail(List<String> emailList);
 	//
 	// public CohortUserListOutputDto saveUsers(UserListInputDto userList, int id)
 	// throws IOException;
