@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -58,6 +59,7 @@ public class User {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "usersCohorts", joinColumns = { @JoinColumn(name = "smsUserId") }, inverseJoinColumns = {
 	@JoinColumn(name = "cohortId") })
+	@JsonIgnore
 	private Set<Cohort> cohorts = new HashSet<>();
 
 	public User() {
