@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -49,7 +50,12 @@ public class CohortController {
 		Pageable pageable = PageRequest.of(page, 7, Sort.by("cohortId"));
 		return cohortService.findAllByPage(pageable);
 	}
-	
+
+	@GetMapping("users/id/{id}")
+    @CognitoAuth(roles = {CognitoRoles.ADMIN, CognitoRoles.STAGING_MANAGER})
+	public Set<User> findCohortUsers(@PathVariable int id) {
+		return cohortService.findCohortUsers(id);
+	}
 	
 	@CognitoAuth(roles= {CognitoRoles.STAGING_MANAGER, CognitoRoles.TRAINER})
 	@PostMapping

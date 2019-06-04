@@ -24,6 +24,14 @@ public class CohortServiceImpl implements CohortService {
 	@Autowired
 	private UserRepo userRepo;
 
+
+
+	@Override
+	public Set<User> findCohortUsers(int id){
+		Cohort cohort = cohortRepo.getOne(id);
+		return cohort.getUsers();
+	}
+	
 	@Override
 	public List<Cohort> findByTrainer(int trainerId) {
 		return cohortRepo.findByTrainerUserId(trainerId);
