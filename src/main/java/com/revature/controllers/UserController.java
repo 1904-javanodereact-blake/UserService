@@ -23,6 +23,7 @@ import com.revature.cognito.annotations.CognitoAuth;
 import com.revature.cognito.constants.CognitoRoles;
 import com.revature.models.User;
 import com.revature.models.dto.EmailList;
+import com.revature.models.dto.EmailListNoPage;
 import com.revature.models.dto.EmailSearch;
 import com.revature.services.UserService;
 
@@ -109,6 +110,12 @@ public class UserController {
 		return new ResponseEntity<>(returnResult, HttpStatus.OK);
 	}
 	
+	@PostMapping("emailnopage")
+	public ResponseEntity<List<User>> findAllByEmailNoPage(@RequestBody EmailListNoPage searchParams) {
+		List<User> returnResult = userService.findListByEmail(searchParams.getEmailList());
+		return new ResponseEntity<>(returnResult, HttpStatus.OK);
+	}
+  
 	@CognitoAuth(roles = { "staging-manager" })
 	@PostMapping("emailsnotpageable")
 	public ResponseEntity<List<User>> findAllByEmailsNotPageable(@RequestBody EmailList searchParams) {
