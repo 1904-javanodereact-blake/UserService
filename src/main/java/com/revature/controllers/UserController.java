@@ -112,8 +112,14 @@ public class UserController {
 	
 	@PostMapping("emailnopage")
 	public ResponseEntity<List<User>> findAllByEmailNoPage(@RequestBody EmailListNoPage searchParams) {
-
 		List<User> returnResult = userService.findListByEmail(searchParams.getEmailList());
+		return new ResponseEntity<>(returnResult, HttpStatus.OK);
+	}
+  
+	@CognitoAuth(roles = { "staging-manager" })
+	@PostMapping("emailsnotpageable")
+	public ResponseEntity<List<User>> findAllByEmailsNotPageable(@RequestBody EmailList searchParams) {
+		List<User> returnResult = userService.findListByEmailNotPageable(searchParams.getEmailList());
 		return new ResponseEntity<>(returnResult, HttpStatus.OK);
 	}
 
