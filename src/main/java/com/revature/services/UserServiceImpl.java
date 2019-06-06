@@ -118,7 +118,10 @@ public class UserServiceImpl implements UserService {
 	public User findOneByEmail(String email) {
 		return userRepo.findByEmailIgnoreCase(email);
 	}
-  
+	
+	//The following implements findUserByPartialEmail() method
+	//in UserService interface by using the findUserByEmailIgnoreCase()
+	//Query method from User repository (ss)
 	@Override 
 	public Page<User> findUserByPartialEmail(String email, Pageable pageable) {
 		return userRepo.findUsersByEmailIgnoreCase(email, pageable);
