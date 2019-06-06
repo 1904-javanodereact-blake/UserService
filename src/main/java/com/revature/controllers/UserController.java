@@ -106,6 +106,8 @@ public class UserController {
 		return new ResponseEntity<>(resultBody, headers, resultStatus);
 	}
 
+	// this endpoint is for receiving a list of user emails(and a page index)
+	// and the returning the list of users(paged)
 	@CognitoAuth(roles = { "staging-manager" })
 	@PostMapping("emails")
 	public ResponseEntity<Page<User>> findAllByEmails(@RequestBody EmailList searchParams) {
@@ -114,12 +116,15 @@ public class UserController {
 		return new ResponseEntity<>(returnResult, HttpStatus.OK);
 	}
 	
+	// endpoint is for receiving a list of user emails and returning the list of users
 	@PostMapping("emailnopage")
 	public ResponseEntity<List<User>> findAllByEmailNoPage(@RequestBody EmailListNoPage searchParams) {
 		List<User> returnResult = userService.findListByEmail(searchParams.getEmailList());
 		return new ResponseEntity<>(returnResult, HttpStatus.OK);
 	}
-  
+
+	// endpoint is for receiving a list of user emails and returning the list of users
+	// the same as emailnopage, needs consolidation
 	@CognitoAuth(roles = { "staging-manager" })
 	@PostMapping("emailsnotpageable")
 	public ResponseEntity<List<User>> findAllByEmailsNotPageable(@RequestBody EmailList searchParams) {
