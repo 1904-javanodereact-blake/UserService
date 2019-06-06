@@ -18,6 +18,9 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 	public User findByEmailIgnoreCase(String email);
 	
   
+	//The following Query method is specifically added for the
+	//findUserByEmail method in UserController method that handels
+	//path = "email/partial'(ss)
 	@Query("FROM User user WHERE user.email LIKE %:email%")
 	public Page<User> findUsersByEmailIgnoreCase(String email, Pageable pageable);
   

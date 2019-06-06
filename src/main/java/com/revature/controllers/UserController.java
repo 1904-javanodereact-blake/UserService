@@ -52,6 +52,7 @@ public class UserController {
 		return userService.findOneById(id);
 	}
 
+	
 	@CognitoAuth(roles = { "staging-manager" })
 	@GetMapping(path = "email/{email:.+}")
 	public ResponseEntity<User> findByEmail(@PathVariable String email) {
@@ -78,7 +79,10 @@ public class UserController {
 	public List<User> findAllByCohortId(@PathVariable int id) {
 		return userService.findAllByCohortId(id);
 	}
-
+	
+	//the following end point handles search by email request from
+	//User Interface by employing findUserByPsrtialEmail() method
+	//from UserService interface. It also take cares of pagination (ss)
 	@CognitoAuth(roles = { "staging-manager" })
 	@PostMapping(path = "email/partial")
 	public ResponseEntity<Page<User>> findUserByEmail(@RequestBody EmailSearch searchParams) {
@@ -102,6 +106,8 @@ public class UserController {
 		return new ResponseEntity<>(resultBody, headers, resultStatus);
 	}
 
+	// this endpoint is for receiving a list of user emails(and a page index)
+	// and the returning the list of users(paged)
 	@CognitoAuth(roles = { "staging-manager" })
 	@PostMapping("emails")
 	public ResponseEntity<Page<User>> findAllByEmails(@RequestBody EmailList searchParams) {
@@ -110,12 +116,15 @@ public class UserController {
 		return new ResponseEntity<>(returnResult, HttpStatus.OK);
 	}
 	
+	// endpoint is for receiving a list of user emails and returning the list of users
 	@PostMapping("emailnopage")
 	public ResponseEntity<List<User>> findAllByEmailNoPage(@RequestBody EmailListNoPage searchParams) {
 		List<User> returnResult = userService.findListByEmail(searchParams.getEmailList());
 		return new ResponseEntity<>(returnResult, HttpStatus.OK);
 	}
-  
+
+	// endpoint is for receiving a list of user emails and returning the list of users
+	// the same as emailnopage, needs consolidation
 	@CognitoAuth(roles = { "staging-manager" })
 	@PostMapping("emailsnotpageable")
 	public ResponseEntity<List<User>> findAllByEmailsNotPageable(@RequestBody EmailList searchParams) {

@@ -23,6 +23,8 @@ public interface UserService {
 	//
 	 public User findOneByEmail(String email);
 	//
+	 //This method is added for use in findUserByEmail() method
+	 //In UserController class that handles path = "email/partial" (ss)
 	 public Page<User> findUserByPartialEmail(String email, Pageable pageable);
 	//
 	 public Page<User> findListByEmail(List<String> emailList, Pageable pageable);
