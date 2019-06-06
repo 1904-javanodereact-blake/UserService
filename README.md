@@ -1,6 +1,9 @@
 # UserService
 repository for user service
 
+#Database Variables
+run user-service.sql file to create database schema. Will create the schema itself. Does not need schema setup.
+
 #Environment Variables
 
 Url for cognito jwt verification, the url should contain /dev or /prod so it can point to the appropriate aws cognito  
